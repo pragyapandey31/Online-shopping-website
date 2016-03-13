@@ -1,0 +1,12 @@
+﻿<div>
+    Invalid password or email
+    @Html.ValidationSummary("true")
+    @ViewBag.error
+    @if (ViewBag.error == "ne")
+    {
+
+        @Html.Partial("Index2", "StoreHome")
+
+
+    }
+</div>

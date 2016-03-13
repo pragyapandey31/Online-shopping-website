@@ -1,0 +1,61 @@
+﻿
+@using loginsession.Models;
+@model loginsession.ViewModels.GroupViewModel
+
+
+
+<!DOCTYPE html>
+@Styles.Render("~/Content/StyleSheet2.css")
+<html>
+<body>
+   
+    @{ var i = ViewBag.i;
+        var prods = Model.Products.Where(p => p.SubSubId == i);}
+    <!--  <div width="100%" style="height:100px;float:left;text-align:center">-->
+    @{var n = Model.SubSubs.Where(s => s.SubSubId == i);
+
+    }
+    <div style="height:50px">
+        @foreach (var name in n)
+        {<p></p>
+        <h1 style="text-align:center">@name.Title</h1>      <p></p>  }
+
+    </div>
+    <p></p>
+    <p></p>
+    
+    <div style="height:2700px;width:1400px;float:left;background-color:#eee">
+        <div style="height:50px;width:1400px;float:left;">    </div>    
+        <div style="height:900px;width:250px;float:left;">    </div>
+        <div style="height:50px;width:900px;float:left;background-color:white">    </div>
+    <div style="height:900px;width:900px;float:left;background-color:white">
+        @foreach (var ps in prods)
+        {
+            int idp = ps.ProductId;
+            <div style="width:300px;height:400px;float:left;text-align:center">
+
+                <div class="zoom"><a href="@Url.Action("ProductPage","StoreHome",new { idp })"><img src="~/img/@(ps.ProductArtUrl)" class="zoom" /></a></div>
+                <h4>@ps.Title</h4><h5><a href="@Url.Action("ProductPage","StoreHome",new { idp })">Buy</a></h5>
+
+            </div>
+
+
+
+
+        }
+
+    </div>
+        </div>
+    <div style="height:900px;width:220px;float:left;">
+
+
+
+
+    </div>
+
+
+
+
+
+</body>
+</html>

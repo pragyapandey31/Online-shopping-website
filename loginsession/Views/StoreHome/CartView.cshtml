@@ -1,0 +1,64 @@
+﻿@using loginsession.Models;
+@using loginsession.ViewModels;
+@model loginsession.ViewModels.GroupViewModel
+
+           <div style="height:1000px;width:150px;float:left">
+</div>
+<div style="height:1000px;width:20px;float:left;background-color:#eee"></div>
+<div style="height:1000px;width:200px;float:left;background-color:#eee">
+    <p></p>Quick Links<p></p>
+    <div style="height:1px;width:180px;float:left;background-color:black">
+    </div>
+
+    @foreach (Sub s in Model.Subs)
+    {<p></p>
+        <br />  //@Html.DisplayFor(modelItem => s.Title)
+        int ids = s.SubId;
+        @Html.ActionLink(s.Title, "SubView", "UserAcc", new
+       {
+           ids
+       }, null)
+
+        <p></p><br />
+        <div style="height:1px;width:180px;float:left;background-color:black">
+        </div>
+
+    }
+</div>
+
+
+
+
+ 
+
+
+
+            <table>
+                Cart Details
+                @foreach (var item in
+ViewBag.vm.CartItems)
+                {
+                    <tr id="row-@item.RecordId" style="height:100px;width:300px">
+                        <td style="height:100px;width:100px">
+                            @{ int idp = item.ProductId;
+                                var pr = Model.Products.SingleOrDefault(p => p.ProductId == idp);
+                                }
+                            <a href="@Url.Action("ProductPage","StoreHome",new { idp })">
+                                <img src="~/img/@(pr.ProductArtUrl)" class="zoom" style="height:100px;width:100px"/></a>
+                                @item.Product.Title
+</td>
+                        <td style="height:100px;width:100px" valign="bottom">
+                            @item.Product.Price
+                        </td>
+                        <td  style="height:100px;width:100px" valign="bottom">
+                            @item.Count
+                        </td>
+                        <td valign="bottom">
+                            @{ int id = item.RecordId;}
+                         <a href="@Url.Action("RemoveFromCart1", "ShoppingCart",new { id })">Remove from Cart</a>;
+                        </td>
+                    </tr>
+                }
+
+            </table>
+            <a href="@Url.Action("Buy","ShoppingCart")">Buy</a>

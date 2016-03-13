@@ -1,0 +1,246 @@
+﻿
+@using loginsession.Models;
+@using loginsession.ViewModels;
+@model loginsession.ViewModels.GroupViewModel
+
+
+
+@{
+    Layout = null;
+    //ViewBag.Title = "Index";
+    // Styles.Render("~/Content/css");
+    Scripts.Render("~/bundles/jquery");
+
+    Scripts.Render("~/bundles/bootstrap");
+}
+<!DOCTYPE html>
+
+<body>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/Scripts/jquery-1.10.2.js")
+    @Scripts.Render("~/Scripts/jquery-1.10.2.min.js")
+
+    @Scripts.Render("~/Scripts/bootstrap.min.js")
+    <div class="div-third">
+
+        <div class="div-1">
+            <div class="div-1-3">
+                <div id="1-21" style="height:35px;width:1200px;float:left;"></div>
+                <div id="1-22" style="height:135px;width:400px;float:left;"></div>
+                <form action="/StoreManager/Disp" method="post">
+                    <input type="text" placeholder="Hi,what are you looking for today?" name="search" style="height:30px;width:400px" />
+                    <input type="submit" value="Search" style="height:30px;width:100px;background: #cfbea5;
+  background-image: -webkit-linear-gradient(top, #cfbea5, #919ca3);
+  background-image: -moz-linear-gradient(top, #cfbea5, #919ca3);
+  background-color:red;
+  background-image: -o-linear-gradient(top, #cfbea5, #919ca3);
+  background-image: linear-gradient(to bottom, #cfbea5, #919ca3);" />
+                </form>
+            </div>
+
+
+            <form method="post" action=@Url.Action("CartView", "StoreHome" )>
+
+                <button type="button" class="div-1-5">Cart</button>
+            </form>
+            @if (Request.IsAuthenticated)
+            {
+                <p>
+                    Hello @CurrentUser.Name
+                </p>
+
+                                <p>
+                                    <a href="@Url.Action("logout", "Account")">Log Out</a>
+                                </p>
+            }
+            else
+            {
+
+                <form method="get" action=@Url.Action("LogIn", "Account")>
+                    <a href="@Url.Action("login", "Account")">login</a>
+                    <a href="@Url.Action("Register", "Account")">Register</a>
+                    <button type="button" class="div-1-5">
+                        Log in
+                    </button>
+                </form>
+            }
+        </div>
+    </div>
+
+    <nav>
+        <ul>
+
+            @foreach (Category c in Model.Categories)
+            {
+
+
+
+
+
+
+                <li>
+                    <a href="products.html" style="color:#000000">@Html.DisplayFor(modelItem => c.Title)<span class="caret"></span></a>
+                    <div>
+                        <ul>
+                            @{
+                                int id = c.CategoryId;
+                                var subs = Model.Subs.Where(p => p.CategoryId == id);
+
+
+                            }
+                            @foreach (var s in subs)
+                            {
+                                int ids = s.SubId;
+                                <li>
+
+                                    @Html.ActionLink(s.Title, "SubView", "UserAcc", new
+                               {
+                                   ids
+                               }, null)
+                                    <div>
+                                        <ul>
+                                            @{
+                                                int idp = s.SubId;
+                                                var subsubs = Model.SubSubs.Where(m => m.SubId == idp);
+                                            }
+
+
+                                            @foreach (var ss in subsubs)
+                                            {
+                                                int id1 = ss.SubSubId;
+
+                                                <li>
+                                                    @Html.ActionLink(ss.Title, "ProductView", "UserAcc", new
+                                           {
+                                               id1
+                                           }, null)
+                                                </li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </li>
+
+
+                                                }
+                        </ul>
+                    </div>
+                </li>
+
+                                                }
+        </ul>
+    </nav>
+
+   
+
+    <button type="button" class="div-1-5" data-toggle="modal"
+            data-target="#myModal">
+        Log in
+    </button>  <button type="button" class="div-1-5" data-toggle="modal"
+                       data-target="#myModalR">
+        Register
+    </button>
+
+    <div class="modal" id="myModal" role="dialog">
+        <div style=" position: relative;
+ background-color:#5E2D79;
+    height: 400px;
+    width: 400px;
+    margin: 50px 0 0 0px;
+    top: 25%;
+    left: 40%;">
+            <div>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                <button type="button" class="div-1-7" data-dismiss="modal">
+                    X
+                </button>
+                <!-- Modal content-->
+
+                <h1 style="color:white;font-size:12px">      goodreads.com</h1>
+
+                @Html.ValidationSummary(true)
+
+                @using (Html.BeginForm("LogIn", "Account"))
+                {
+
+                    <input type="email" name="Email" placeholder="email" style="height:30px;width:250px;margin:20px;" />
+                    <p></p><p>
+                    </p>
+                    <input type="password" name="Password" placeholder="password" style="height:30px;width:250px;margin:20px;" />
+                                <p>
+                                    @Html.Hidden("returnUrl", this.Request.RawUrl)
+                                    <button type="submit">Log In</button>
+
+
+
+                                </p>
+                }
+
+
+
+
+
+                <a data-dismiss="modal" data-toggle="modal" data-target="#myModal2"> Forgot password ? </a>
+
+                <button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left:250px">
+                    Log in
+                </button>
+                <p style="margin-left:250px">New User? Sign Up </p>
+
+                <a data-dismiss="modal" data-toggle="modal" data-target="#myModal1"> Sign up</a>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal" id="myModalR" role="dialog">
+        <div style=" position: relative;
+ background-color:#5E2D79;
+    height: 400px;
+    width: 400px;
+    margin: 50px 0 0 0px;
+    top: 25%;
+    left: 40%;">
+            <div>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                <button type="button" class="div-1-7" data-dismiss="modal">
+                    X
+                </button>
+                <!-- Modal content-->
+
+                <h1 style="color:white;font-size:12px">      goodreads.com</h1>
+
+                @Html.ValidationSummary(true)
+
+                @using (Html.BeginForm("Register", "Account"))
+                {
+
+                    <input type="email" name="Email" placeholder="email" style="height:30px;width:250px;margin:20px;" />
+                    <p></p><p>
+                    </p>
+                    <input type="password" name="Password" placeholder="password" style="height:30px;width:250px;margin:20px;" />
+                    <input type="text" name="Country" placeholder="country" style="height:30px;width:250px;margin:20px;" />
+                    <p>
+                        @Html.Hidden("returnUrl", this.Request.RawUrl)
+                        <button type="submit">Log In</button>
+
+
+
+                    </p>
+                }
+
+
+
+
+
+                <a data-dismiss="modal" data-toggle="modal" data-target="#myModal2"> Forgot password ? </a>
+
+                <button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left:250px">
+                    Log in
+                </button>
+                <p style="margin-left:250px">New User? Sign Up </p>
+
+                <a data-dismiss="modal" data-toggle="modal" data-target="#myModal1"> Sign up</a>
+            </div>
+
+        </div>
+    </div>
+</body>

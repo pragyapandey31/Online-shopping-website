@@ -1,0 +1,33 @@
+﻿@using loginsession.Models;
+@using loginsession.ViewModels;
+@model loginsession.ViewModels.GroupViewModel
+@{
+    ViewBag.Title = "Complete";
+}
+<div style="height:1000px;width:150px;float:left">
+</div>
+<div style="height:1000px;width:20px;float:left;background-color:#eee"></div>
+<div style="height:1000px;width:200px;float:left;background-color:#eee">
+    <p></p>Quick Links<p></p>
+    <div style="height:1px;width:180px;float:left;background-color:#abb8b8">
+    </div>
+
+    @foreach (Sub s in Model.Subs)
+    {<p></p>
+    <br />  //@Html.DisplayFor(modelItem => s.Title)
+        int ids = s.SubId;
+        @Html.ActionLink(s.Title, "SubView", "StoreHome", new
+       {
+           ids
+       }, null)
+
+        <p></p><br />
+        <div style="height:1px;width:180px;float:left;background-color:#abb8b8">
+        </div>
+
+    }
+</div>
+
+<h2>Complete</h2>
+
+Order Successfully placed

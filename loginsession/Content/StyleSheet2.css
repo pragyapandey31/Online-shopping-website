@@ -1,0 +1,31 @@
+﻿body {
+  <!--background-color: #EBE8E4;-->
+  color: rgb( 40, 44, 47 );
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+}
+.zoom img {
+-moz-transition:-moz-transform 0.1s ease-in; 
+-webkit-transition:-webkit-transform 0.1s ease-in; 
+-o-transition:-o-transform 0.1s ease-in;
+
+}
+.zoom img:hover{
+-moz-transform:scale(1.2); 
+-webkit-transform:scale(1.2);
+-o-transform:scale(1.2);
+}
+
+.zoom2 img {
+-moz-transition:-moz-transform 0.1s ease-in; 
+-webkit-transition:-webkit-transform 0.1s ease-in; 
+-o-transition:-o-transform 0.1s ease-in;
+
+}
+.zoom2 img:hover{
+-moz-transform:scale(2); 
+-webkit-transform:scale(2);
+-o-transform:scale(2);
+}
+

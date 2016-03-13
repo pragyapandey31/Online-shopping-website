@@ -1,0 +1,48 @@
+﻿@using loginsession.Models;
+@model loginsession.ViewModels.GroupViewModel
+
+
+<body>
+
+    @Styles.Render("~/Content/StyleSheet2.css")
+    @{ 
+        var prods = ViewBag.products;
+       }
+    <!--  <div width="100%" style="height:100px;float:left;text-align:center">-->
+   
+    <div style="height:50px">
+       
+
+    </div>
+    <p></p>
+    <p></p>
+    <div style="height:900px;width:220px;float:left;">    </div>
+    <div style="height:900px;width:900px;float:left;">
+        @foreach (var ps in prods)
+        {
+            int idp = ps.ProductId;
+            <div style="width:300px;height:400px;float:left;text-align:center">
+
+                <div class="zoom"><a href="@Url.Action("ProductPage","StoreHome",new { idp })"><img src="~/img/@(ps.ProductArtUrl)" class="zoom" /></a></div>
+                <h3>@ps.Title</h3><h5><a href="@Url.Action("ProductPage","StoreHome",new { idp })">Buy</a></h5>
+
+            </div>
+
+
+
+
+        }
+
+    </div>
+    <div style="height:900px;width:220px;float:left;">
+
+
+
+
+    </div>
+
+
+
+
+
+</body>

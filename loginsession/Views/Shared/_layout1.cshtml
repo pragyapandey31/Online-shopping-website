@@ -1,0 +1,841 @@
+﻿@using loginsession.Models;
+@using loginsession.ViewModels;
+@model loginsession.ViewModels.GroupViewModel
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+   
+    @Styles.Render("~/Content/StyleSheet1.css")
+  
+    
+    @Styles.Render("~/Content/bootstrap.css")
+    @Scripts.Render("~/Scripts/jquery-1.10.2.js")
+    @Scripts.Render("~/Scripts/jquery-1.10.2.min.js")
+
+    @Scripts.Render("~/Scripts/bootstrap.min.js")
+    @Scripts.Render("~/Content/bootstrap.css")
+
+       <style>
+        .nava ul ul {
+            display: none;
+        }
+
+        .nava ul li:hover > ul {
+            display: block;
+        }
+
+        .nava ul {
+            list-style: none;
+            position: relative;
+            display: inline-table;
+        }
+
+            .nava ul:after {
+                content: "";
+                clear: both;
+                display: block;
+            }
+
+            .nava ul li {
+                float: left;
+            }
+
+                .nava ul li:hover {
+                    background: #4b545f;
+                    background: linear-gradient(top, #4f5964 0%, #5f6975 40%);
+                    background: -moz-linear-gradient(top, #4f5964 0%, #5f6975 40%);
+                    background: -webkit-linear-gradient(top, #4f5964 0%,#5f6975 40%);
+                }
+
+                    .nava ul li:hover a {
+                        color: #fff;
+                    }
+
+                .nava ul li a {
+                    display: block;
+                    padding: 25px 40px;
+                    color: #757575;
+                    text-decoration: none;
+                }
+
+            .nava ul ul {
+                background: #5f6975;
+                border-radius: 0px;
+                padding: 0;
+                position: absolute;
+                top: 100%;
+            }
+
+                .nava ul ul li {
+                    float: none;
+                    border-top: 1px solid #6b727c;
+                    border-bottom: 1px solid #575f6a;
+                    position: relative;
+                }
+
+                    .nava ul ul li a {
+                        padding: 15px 40px;
+                        color: #fff;
+                    }
+
+                        .nava ul ul li a:hover {
+                            background: #4b545f;
+                        }
+
+                .nava ul ul ul {
+                    position: absolute;
+                    left: 100%;
+                    top: 0;
+                }
+    </style>
+    @Html.ValidationSummary(true)
+
+
+
+
+    @if (ViewBag.error == "error")
+
+    { <div style="
+ display:block;
+ background-color:#5E2D79;
+ height: 400px;
+    width: 400px;background-color:deeppink;
+"></div>
+
+        <!-- <div class="modal" id="myModal" role="dialog">-->
+        <div style="
+ display:block;
+ background-color:#5E2D79;
+ border-radius: 10px;
+    height: 400px;
+    width: 400px;
+    margin: 50px 0 0 0px;
+    top: 25%;
+    left: 40%;">
+            <div>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                <button type="button" class="div-1-7" data-dismiss="modal">
+                    X
+                </button>
+                <!-- Modal content-->
+
+                <h1 style="color:white;font-size:12px">     abcxyz.com</h1>
+
+                @Html.ValidationSummary(true)
+
+                @using (Html.BeginForm("LogIn", "Account"))
+                {
+
+                    <input type="email" name="Email" placeholder="email" style="height:30px;width:250px;margin:20px;" />
+                    <p></p><p>
+                    </p>
+                        <input type="password" name="Password" placeholder="password" style="height:30px;width:250px;margin:20px;" />
+                        <p>
+                            @Html.Hidden("returnUrl", this.Request.RawUrl)
+                            <button type="submit">Log In</button>
+
+
+
+                        </p>
+                }
+
+
+
+
+
+
+
+
+
+                @Html.Partial("_externallogin", new ExternalLoginListViewModel { ReturnUrl = ViewBag.returnUrl })
+
+
+
+
+
+
+
+
+                <a data-dismiss="modal" data-toggle="modal" data-target="#myModal2"> Forgot password ? </a>
+
+
+
+
+
+            </div>
+
+        </div>
+        <!-- </div>-->
+        }
+    
+
+
+
+
+
+
+
+        <div style="height:100px;width:1500px;background: -webkit-linear-gradient(#ffffff, #abb8b8); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#ffffff, #abb8b8); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#ffffff, #abb8b8); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#ffffff, #abb8b8); /* Standard syntax */">
+            <div style="height:100px;width:200px;float:left"></div>
+            <div style="height:30px;width:1300px;float:left"></div>
+            <div style="height:70px;width:200px;float:left">abcxyz</div>
+            <div style="height:70px;width:500px;float:left">
+                <form action="/StoreHome/Disp" method="post">
+                    <input type="text" placeholder="Hi,what are you looking for today?" name="search" style="height:44px;width:400px;float:left" />
+                    <!--<input type="submit" value="Search" style="background:url('search.png'); padding:0px;float:left;height:30px;width:100px;margin:0px;" />-->
+                    <button style="border:none;background-color:black;padding:0px;vertical-align:top;display:inline-block;float:left;margin:0px;height:44px;width:80px"><img src="~/Content/search.png" style="padding:0px;float:left;height:40px;width:76px;margin:0px;"></button>
+                </form>
+
+
+
+            </div>
+
+            @if (Request.IsAuthenticated)
+            {
+
+                <div style="height:70px;width:500px;float:left">
+                    &emsp;&emsp;     &emsp;&emsp;
+                    <nav class="nava" style="height:50px;width:300px">
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <img src="~/Content/acc.png" style="height:20px;width:20px" />
+                                </a>
+                                <ul>
+
+                                    <li><a href="#">My Account</a></li>
+                                                                      
+
+                                    <li>
+                                    
+                                        
+                                  
+                                        <a href="#" data-toggle="modal"
+                                        data-target="#myModall">Log Out</a>
+                                         </li>
+                                </ul>
+                            </li>
+                            <li><a href="@Url.Action("CartView","StoreHome")"><img src="~/Content/cart1.png" style="height:20px;width:20px" /></a>
+
+                        </ul>
+                    </nav>
+                </div>
+
+
+
+            }
+
+
+
+
+            else
+            {
+
+
+
+
+
+
+
+
+
+
+                <div style="height:70px;width:500px;float:left">
+                    &emsp;&emsp;     &emsp;&emsp;
+                    <nav class="nava" style="height:50px;width:300px">
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <img src="~/Content/acc.png" style="height:20px;width:20px" />
+                                </a>
+                                <ul>
+
+                                    <li data-toggle="modal"
+                                        data-target="#myModal"><a href="#">Login</a></li>
+                                    <li data-toggle="modal"
+                                        data-target="#myModalR"><a href="#">Register</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="@Url.Action("CartView","StoreHome")">
+                                
+                                
+                                
+                                
+                                 <img src="~/Content/cart1.png" style="height:20px;width:20px" />
+                            </a>
+                             
+
+                        </ul>
+                    </nav>
+                </div>
+            }
+        </div>
+
+        <!--  <button type="button" class="div-1-5" data-toggle="modal"
+                  data-target="#myModal">
+              Log in
+          </button>  <button type="button" class="div-1-5" data-toggle="modal"
+                             data-target="#myModalR">
+              Register
+          </button>  -->
+    
+    <div class="modal" id="myModal2" role="dialog">
+        <div style=" position: relative;
+ background-color:#5E2D79;
+ border-radius: 10px;
+    height: 400px;
+    width: 400px;
+    margin: 50px 0 0 0px;
+    top: 25%;
+    left: 40%;">
+            <div>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                <button type="button" class="div-1-7" data-dismiss="modal">
+                    X
+                </button>
+                <!-- Modal content-->
+
+                <h1 style="color:white;font-size:12px">     abcxyz.com</h1>
+
+                @Html.ValidationSummary(true)
+
+                @using (Html.BeginForm("ForgotPassword", "Account"))
+                {
+                    <h1>  Forgot Password</h1>
+                    <p>
+If you have forgotten your password, we can send an email with instructions to reset it.</p>
+                <input type="email" name="Email" placeholder="email" style="height:30px;width:250px;margin:20px;" />
+                <p></p>
+
+                    @Html.Hidden("returnUrl", this.Request.RawUrl)
+                    <button type="submit">Send Email</button>
+
+
+
+
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div class="modal" id="myModall" role="dialog">
+        <div style=" position: relative;
+ background-color:#5E2D79;
+ border-radius: 10px;
+    height: 400px;
+    width: 400px;
+    margin: 50px 0 0 0px;
+    top: 25%;
+    left: 40%;">
+            <div>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                <button type="button" class="div-1-7" data-dismiss="modal">
+                    X
+                </button>
+                <!-- Modal content-->
+
+                <h1 style="color:white;font-size:12px">     abcxyz.com</h1>
+
+                @Html.ValidationSummary(true)
+
+                @using (Html.BeginForm("logout", "Account"))
+                {
+                  <h1>  Are you sure??</h1>
+
+                        @Html.Hidden("returnUrl", this.Request.RawUrl)
+                        <button type="submit">Log Out</button>
+
+
+
+                    
+                }
+
+
+
+
+
+
+
+
+
+               
+
+
+
+
+
+
+
+               
+
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+    
+    
+    
+    
+    
+    <div class="modal" id="myModal" role="dialog">
+        <div style=" position: relative;
+ background-color:#5E2D79;
+ border-radius: 10px;
+    height: 400px;
+    width: 400px;
+    margin: 50px 0 0 0px;
+    top: 25%;
+    left: 40%;">
+            <div>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                <button type="button" class="div-1-7" data-dismiss="modal">
+                    X
+                </button>
+                <!-- Modal content-->
+
+                <h1 style="color:white;font-size:18px"> &nbsp;&nbsp; &nbsp;&nbsp;     LogIn</h1>
+
+                @Html.ValidationSummary(true)
+                <div style="height:400px;width:60px;float:left"></div>
+                @using (Html.BeginForm("LogIn", "Account"))
+                {
+
+                    <input type="email" id="email" name="Email" placeholder="email" style="height:30px;width:250px;margin:20px;border:10px" onchange="disp3();" />
+                    <p></p><p>
+                    </p>
+                    <input type="password" name="Password" placeholder="password" style="height:30px;width:250px;margin:20px;" />
+                    <p>
+                        @Html.Hidden("returnUrl", this.Request.RawUrl)
+                        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" onclick="javascript:validate()">Log In</button>
+
+
+
+                    </p>
+                }
+
+
+
+
+
+
+
+
+
+                @Html.Partial("_externallogin", new ExternalLoginListViewModel { ReturnUrl = ViewBag.returnUrl })
+
+
+
+
+
+
+
+
+                <a data-dismiss="modal" data-toggle="modal" data-target="#myModal2"> Forgot password ? </a>
+
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+    <script>
+        function validate()
+        {
+            var pass, email;
+            email = document.getElementByName("Email").value;
+            if (email == "")
+            { alert("enter email");}
+
+
+        }
+        function disp3()
+        {
+
+
+	
+	
+      
+
+
+            if(document.getElementById('email').value=="")
+            {
+		
+                alert("Please enter your email");
+                document.getElementById('email').focus();
+            }
+    </script>
+    <div class="modal" id="myModalR" role="dialog">
+        <div style=" position: relative;
+ background-color:#5E2D79;
+ border-radius: 10px;
+    height: 400px;
+    width: 400px;
+    margin: 50px 0 0 0px;
+    top: 25%;
+    left: 40%;">
+            <div>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                <button type="button" class="div-1-7" data-dismiss="modal">
+                    X
+                </button>
+                <!-- Modal content-->
+
+                <h1 style="color:white;font-size:16px">  &nbsp;&nbsp;   Register</h1>
+
+                @Html.ValidationSummary(true)
+                <div style="height:400px;width:60px;float:left"></div>
+                @using (Html.BeginForm("Register", "Account"))
+                {
+
+                    <input type="email" name="Email" placeholder="email" style="height:30px;width:250px;margin:20px;" />
+                    <p></p><p>
+                    </p>
+                    <input type="password" name="Password" placeholder="password" style="height:30px;width:250px;margin:20px;" />
+                    <p>
+                        @Html.Hidden("returnUrl", this.Request.RawUrl)
+                        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                        <button type="submit"> Register</button>
+
+
+
+                    </p>
+                }
+                @Html.Partial("_externallogin", new ExternalLoginListViewModel { ReturnUrl = ViewBag.returnUrl })
+
+
+
+
+
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="modal" id="myModalc" role="dialog">
+        <div style=" position: relative;
+ background-color:#5E2D79;
+    height: 400px;
+    width: 400px;
+    margin: 50px 0 0 0px;
+    top: 25%;
+    left: 40%;">
+            <div>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                <button type="button" class="div-1-7" data-dismiss="modal">
+                    X
+                </button>
+                <!-- Modal content-->
+
+                <h1 style="color:white;font-size:12px">      abcxyz.com</h1>
+
+
+
+
+
+
+                @foreach (var pp in Model.Products)
+                {
+                    @Html.DisplayFor(modelItem => pp.Title)
+
+
+
+
+
+
+                    @Html.ActionLink("Add to cart", "AddToCart",
+         "ShoppingCart", new { id = pp.ProductId }, "")
+                }
+
+
+
+
+
+                <form action="" method="get">
+                    <p></p>
+                    <p></p>
+                    <input type="email" name="em" placeholder="email" style="height:30px;width:250px;margin:20px;" />
+                    <p></p><p>
+                    </p>
+                    <input type="password" name="psw" placeholder="password" style="height:30px;width:250px;margin:20px;" />
+
+                </form>
+                <a data-dismiss="modal" data-toggle="modal" data-target="#myModal2"> Forgot password ? </a>
+
+                <button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left:250px">
+                    Log in
+                </button>
+                <p style="margin-left:250px">New User? Sign Up </p>
+
+                <a data-dismiss="modal" data-toggle="modal" data-target="#myModal1"> Sign up</a>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+        <style>
+                .navc {
+              background-color: #fff;
+              border: 1px solid #dedede;
+              border-radius: 4px;
+              box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.055);
+              color: #888;
+              display: block;
+              margin: 8px 22px 8px 22px;
+              overflow: hidden;
+              width: 90%;
+            }
+
+              .navc ul {
+                margin: 0;
+                padding: 0;
+              }
+
+                .navc ul li {
+                  display: inline-block;
+                  list-style-type: none;
+
+                  -webkit-transition: all 0.2s;
+                    -moz-transition: all 0.2s;
+                    -ms-transition: all 0.2s;
+                    -o-transition: all 0.2s;
+                    transition: all 0.2s;
+                }
+
+                  .navc > ul > li > a > .caret,
+                  .navc > ul > li > div ul > li > a > .caret {
+                    border-top: 4px solid #aaa;
+                    border-right: 4px solid transparent;
+                    border-left: 4px solid transparent;
+                    content: "";
+                    display: inline-block;
+                    height: 0;
+                    width: 0;
+                    vertical-align: middle;
+
+                    -webkit-transition: color 0.1s linear;
+                      -moz-transition: color 0.1s linear;
+                    -o-transition: color 0.1s linear;
+                      transition: color 0.1s linear;
+                  }
+
+                    .navc > ul > li > div ul > li > a > .caret {
+                        border-bottom: 4px solid transparent;
+                        border-top: 4px solid transparent;
+                        border-right: 4px solid transparent;
+                        border-left: 4px solid #f2f2f2;
+                        margin: 0 0 0 8px;
+                    }
+
+                  .navc > ul > li > a {
+                    color: #aaa;
+                    display: block;
+                    line-height: 56px;
+                    padding: 0 24px;
+                    text-decoration: none;
+                  }
+
+                    .navc > ul > li:hover {
+                      background-color: #eee;
+                    }
+
+                    .navc > ul > li:hover > a {
+                      color: black;
+                    }
+
+                    .navc > ul > li:hover > a > .caret {
+                      border-top-color: rgb( 255, 255, 255 );
+                    }
+
+                    .navc > ul > li > div ul > li:hover > a > .caret {
+                        border-left-color: rgb(255,255,255);
+                    }
+
+                  .navc > ul > li > div,
+                  .navc > ul > li > div ul > li > div {
+                    background-color: #eee;
+                    border-top: 0;
+                    border-radius: 0 0 4px 4px;
+                    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.055);
+                    display: none;
+                    margin: 0;
+                    opacity: 0;
+                    position: absolute;
+                    width: 165px;
+                    visibility: hidden;
+
+                    -webkit-transiton: opacity 0.2s;
+                    -moz-transition: opacity 0.2s;
+                    -ms-transition: opacity 0.2s;
+                    -o-transition: opacity 0.2s;
+                    -transition: opacity 0.2s;
+                  }
+
+                    .navc > ul > li > div ul > li > div {
+                        background-color: #eee;
+                        border-radius: 0 4px 4px 4px;
+                        box-shadow: inset 2px 0 5px rgba(0,0,0,.15);
+                        margin-top: -42px;
+                        right: -165px;
+                    }
+
+                    .navc > ul > li:hover > div,
+                    .navc > ul > li > div ul > li:hover > div {
+                      display: block;
+                      opacity: 1;
+                      visibility: visible;
+                    }
+
+                      .navc > ul > li > div ul > li,
+                      .navc > ul > li > div ul > li > div ul > li {
+                        display: block;
+                        position: relative;
+                      }
+
+                        .navc > ul > li > div ul > li > a,
+                        .navc > ul > li > div ul > li > div ul > li > a {
+                          color: black;
+                          display: block;
+                          padding: 12px 24px;
+                          text-decoration: none;
+                        }
+
+                          .navc > ul > li > div ul > li:hover > a {
+                            background-color: rgba( 255, 255, 255, 0.1);
+                          }
+        </style>
+
+
+        <nav class="navc">
+            <ul>
+
+                @foreach (Category c in Model.Categories)
+            {
+
+
+
+
+
+
+            <li>
+                <a href="products.html" style="color:#000000">@Html.DisplayFor(modelItem => c.Title)<span class="caret"></span></a>
+                <div>
+                    <ul>
+                        @{
+                                int id = c.CategoryId;
+                                var subs = Model.Subs.Where(p => p.CategoryId == id);
+
+
+                        }
+                        @foreach (var s in subs)
+                            {
+                                int ids = s.SubId;
+                            <li>
+
+                                @Html.ActionLink(s.Title, "SubView", "StoreHome", new
+                           {
+                               ids
+                           }, null)
+                                <div>
+                                    <ul>
+                                        @{
+                                                int idp = s.SubId;
+                                                var subsubs = Model.SubSubs.Where(m => m.SubId == idp);
+                                        }
+
+
+                                        @foreach (var ss in subsubs)
+                                            {
+                                                int id1 = ss.SubSubId;
+
+                                            <li>
+                                                @Html.ActionLink(ss.Title, "ProductView", "StoreHome", new
+                                           {
+                                               id1
+                                           }, null)
+                                            </li>
+                                            }
+                                    </ul>
+                                </div>
+                            </li>
+
+
+                                                }
+                    </ul>
+                </div>
+            </li>
+
+                                                }
+            </ul>
+        </nav>
+
+
+
+
+
+
+
+
+
+        <div>
+
+            @RenderBody()
+        </div>
+</body>
+
+
+
+</html>

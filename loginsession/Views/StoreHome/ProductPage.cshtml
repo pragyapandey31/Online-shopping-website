@@ -1,0 +1,66 @@
+﻿
+
+<!DOCTYPE html>
+
+<html>
+@using loginsession.Models;
+@model loginsession.ViewModels.GroupViewModel
+
+
+<body>
+   @Styles.Render("~/Content/StyleSheet2.css")
+ 
+    @{ var idp = ViewBag.idp;
+        string path = "/img/" + idp + "/" + "1" + ".jpeg";
+
+        var prods = Model.Products.Single(p => p.ProductId == idp);
+    }
+
+    <div style="height:900px;width:300px;float:left"></div>
+
+
+    <div>
+        <img style="width:300px;height:400px" src="@path" id="c" />
+        <div style="height:900px;width:700px;float:right">
+            <div style="height:100px;width:700px;float:right"></div>
+                <p></p>
+                <h3> @prods.Title</h3>
+                <p></p>
+                <p></p>
+            <h4> Product Description<br /> @prods.Description;</h4>
+            <p></p>
+            <h3> Product Price @prods.Price</h3>
+            <p></p>
+                @Html.ActionLink("Add to Cart", "AddToCart", "ShoppingCart", new { idp }, null)
+            </div>
+    </div>
+    <p></p>
+
+    @for (int j = 1; j <= 2; j++)
+    {
+        string path1 = "/img/" + idp + "/" + j + ".jpeg";
+       <!--<div style="height:100px;width:100px;float:left">-->
+
+        <img src="@path1" style="height:120px;width:75px" id="cont1" onmouseover="a(this)" />
+
+    }
+    <p></p>
+    @Html.ActionLink("Add to Cart", "AddToCart", "ShoppingCart", new { idp }, null)
+
+
+
+
+    <script>
+function a(x)
+{
+document.getElementById('c').src=x.src
+
+}
+
+
+    </script>
+
+
+
+</body>
+</html>

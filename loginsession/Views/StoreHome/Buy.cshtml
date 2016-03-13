@@ -1,0 +1,59 @@
+﻿@using loginsession.Models;
+@using loginsession.ViewModels;
+@model loginsession.ViewModels.GroupViewModel
+
+
+
+
+@using (Html.BeginForm("Complete", "StoreHome"))
+{
+
+    <div style="height:1000px;width:150px;float:left">
+    </div>
+    <div style="height:1000px;width:20px;float:left;background-color:#eee"></div>
+    <div style="height:1000px;width:200px;float:left;background-color:#eee">
+        <p></p>Quick Links<p></p>
+        <div style="height:1px;width:180px;float:left;background-color:black">
+        </div>
+
+        @foreach (Sub s in Model.Subs)
+        {<p></p>
+        <br />  //@Html.DisplayFor(modelItem => s.Title)
+            int ids = s.SubId;
+            @Html.ActionLink(s.Title, "SubView", "UserAcc", new
+   {
+       ids
+   }, null)
+
+            <p></p><br />
+            <div style="height:1px;width:180px;float:left;background-color:black">
+            </div>
+
+        }
+    </div>
+
+
+
+
+
+    <h2>Address And Payment Information</h2>
+    <fieldset>
+        <legend>Shipping Information</legend>
+        <input type="text" name="FirstName" placeholder="FirstName" style="height:30px;width:250px;margin:20px;" />
+        <p></p>
+        <input type="text" name="LastName" placeholder="LastName" style="height:30px;width:250px;margin:20px;" />
+        
+                <p></p><p>
+    <input type="text" name="Address" placeholder="Address" style="height:30px;width:250px;margin:20px;" />
+<p></p><p> <input type="text" name="City" placeholder="City" style="height:30px;width:250px;margin:20px;" />
+<p></p><p> <input type="text" name="State" placeholder="State" style="height:30px;width:250px;margin:20px;" />
+<p></p><p> <input type="text" name="PostalCode" placeholder="Postal Code" style="height:30px;width:250px;margin:20px;" />
+<p></p><p> <input type="text" name="Country" placeholder="Country" style="height:30px;width:250px;margin:20px;" />
+<p></p><p> <input type="text" name="Phone" placeholder="Phone" style="height:30px;width:250px;margin:20px;" />
+<p></p><p> <input type="text" name="Email" placeholder="Email" style="height:30px;width:250px;margin:20px;" />
+<p></p><p>
+</fieldset>
+  
+
+    <input type="submit" value="Submit Order" />
+}

@@ -1,0 +1,32 @@
+﻿@using loginsession.Models
+
+@using Microsoft.Owin.Security
+@{
+ 
+    ViewBag.Title = "LogIn";
+}
+
+<h2>LogIn</h2>
+
+@Html.ValidationSummary(true)
+
+@using (Html.BeginForm())
+{
+
+    <input type="email" name="Email" placeholder="email" style="height:30px;width:250px;margin:20px;" />
+        <p></p><p>
+        </p>
+                <input type="password" name="Password" placeholder="password" style="height:30px;width:250px;margin:20px;" />
+                <p>
+                    @Html.Hidden("returnUrl", this.Request.RawUrl)
+                    <button type="submit">Log In</button>
+
+
+
+                </p>
+
+}
+
+<p>Don't have an account?@ViewBag.returnUrl <a href="@Url.Action("Register")">Register</a></p>
+
+@Html.Partial("_externallogin", new ExternalLoginListViewModel{ReturnUrl = ViewBag.returnUrl})

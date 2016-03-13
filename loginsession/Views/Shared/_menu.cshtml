@@ -1,0 +1,200 @@
+﻿
+@using loginsession.Models;
+@using loginsession.ViewModels;
+@model loginsession.ViewModels.GroupViewModel
+
+
+
+<style>
+    .navc {
+  background-color: #fff;
+  border: 1px solid #dedede;
+  border-radius: 4px;
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.055);
+  color: #888;
+  display: block;
+  margin: 8px 22px 8px 22px;
+  overflow: hidden;
+  width: 90%; 
+}
+
+  .navc ul {
+    margin: 0;
+    padding: 0;
+  }
+
+    .navc ul li {
+      display: inline-block;
+      list-style-type: none;
+      
+      -webkit-transition: all 0.2s;
+        -moz-transition: all 0.2s;
+        -ms-transition: all 0.2s;
+        -o-transition: all 0.2s;
+        transition: all 0.2s; 
+    }
+      
+      .navc > ul > li > a > .caret,
+	  .navc > ul > li > div ul > li > a > .caret {
+        border-top: 4px solid #aaa;
+        border-right: 4px solid transparent;
+        border-left: 4px solid transparent;
+        content: "";
+        display: inline-block;
+        height: 0;
+        width: 0;
+        vertical-align: middle;
+  
+        -webkit-transition: color 0.1s linear;
+     	  -moz-transition: color 0.1s linear;
+       	-o-transition: color 0.1s linear;
+          transition: color 0.1s linear; 
+      }
+	  
+	  	.navc > ul > li > div ul > li > a > .caret {
+			border-bottom: 4px solid transparent;
+			border-top: 4px solid transparent;
+			border-right: 4px solid transparent;
+			border-left: 4px solid #f2f2f2;
+			margin: 0 0 0 8px;
+		}
+
+      .navc > ul > li > a {
+        color: #aaa;
+        display: block;
+        line-height: 56px;
+        padding: 0 24px;
+        text-decoration: none;
+      }
+
+        .navc > ul > li:hover {
+          background-color: rgb( 40, 44, 47 );
+        }
+
+        .navc > ul > li:hover > a {
+          color: rgb( 255, 255, 255 );
+        }
+
+        .navc > ul > li:hover > a > .caret {
+          border-top-color: rgb( 255, 255, 255 );
+        }
+		
+		.navc > ul > li > div ul > li:hover > a > .caret {
+			border-left-color: rgb(255,255,255);
+		}
+      
+      .navc > ul > li > div,
+	  .navc > ul > li > div ul > li > div {
+        background-color: rgb( 40, 44, 47 );
+        border-top: 0;
+        border-radius: 0 0 4px 4px;
+        box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.055);
+        display: none;
+        margin: 0;
+        opacity: 0;
+        position: absolute;
+        width: 165px;
+        visibility: hidden;
+  
+        -webkit-transiton: opacity 0.2s;
+        -moz-transition: opacity 0.2s;
+        -ms-transition: opacity 0.2s;
+        -o-transition: opacity 0.2s;
+        -transition: opacity 0.2s;
+      }
+	  
+	  	.navc > ul > li > div ul > li > div {
+			background-color: rgb( 40, 44, 47 );
+			border-radius: 0 4px 4px 4px;
+			box-shadow: inset 2px 0 5px rgba(0,0,0,.15);
+			margin-top: -42px;
+			right: -165px;
+		}
+
+        .navc > ul > li:hover > div,
+		.navc > ul > li > div ul > li:hover > div {
+          display: block;
+          opacity: 1;
+          visibility: visible;
+        }
+
+          .navc > ul > li > div ul > li,
+		  .navc > ul > li > div ul > li > div ul > li {
+            display: block;
+			position: relative;
+          }
+
+            .navc > ul > li > div ul > li > a,
+			.navc > ul > li > div ul > li > div ul > li > a {
+              color: #fff;
+              display: block;
+              padding: 12px 24px;
+              text-decoration: none;
+            }
+
+              .navc > ul > li > div ul > li:hover > a {
+                background-color: rgba( 255, 255, 255, 0.1);
+              }
+</style>
+<nav class="navc">
+    <ul>
+
+        @foreach (Category c in Model.Categories)
+            {
+
+
+
+
+
+
+            <li>
+                <a href="products.html" style="color:#000000">@Html.DisplayFor(modelItem => c.Title)<span class="caret"></span></a>
+                <div>
+                    <ul>
+                        @{
+                            int id = c.CategoryId;
+                            var subs = Model.Subs.Where(p => p.CategoryId == id);
+
+
+                        }
+                        @foreach (var s in subs)
+                        {
+                            int ids = s.SubId;
+                            <li>
+
+                                @Html.ActionLink(s.Title, "SubView", "UserAcc", new
+                               {
+                                   ids
+                               }, null)
+                                <div>
+                                    <ul>
+                                        @{
+                                            int idp = s.SubId;
+                                            var subsubs = Model.SubSubs.Where(m => m.SubId == idp);
+                                        }
+
+
+                                        @foreach (var ss in subsubs)
+                                        {
+                                            int id1 = ss.SubSubId;
+
+                                            <li>
+                                                @Html.ActionLink(ss.Title, "ProductView", "UserAcc", new
+                                               {
+                                                   id1
+                                               }, null)
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </li>
+
+
+                                            }
+                    </ul>
+                </div>
+            </li>
+
+                                            }
+    </ul>
+</nav>
